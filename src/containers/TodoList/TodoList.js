@@ -1,36 +1,18 @@
 import React from "react";
+import Todo from "../Todo";
+import AddTodo from "../AddTodo";
 
 import { useSelector } from "react-redux";
 
 const TodoList = () => {
   const todoTasks = useSelector((state) => state.reducerSetTask.task);
+  const stateTask = useSelector((state) => state.reducerSetTask.byIds);
 
   return (
     <div className="col col-lg-9 col-xl-7">
       <div className="card rounded-3">
         <div className="card-body p-4">
-          <form className="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
-            <div className="col-12">
-              <div className="form-outline">
-                <input type="text" id="form1" className="form-control" />
-                <label className="form-label" htmlFor="form1">
-                  Insertar la tarea aquí
-                </label>
-              </div>
-            </div>
-
-            <div className="col-12">
-              <button type="submit" className="btn btn-primary">
-                Save
-              </button>
-            </div>
-
-            <div className="col-12">
-              <button type="submit" className="btn btn-warning">
-                Get tasks
-              </button>
-            </div>
-          </form>
+          <AddTodo />
 
           <table className="table mb-4">
             <thead>
@@ -43,23 +25,7 @@ const TodoList = () => {
             </thead>
 
             <tbody>
-              {todoTasks.map((task) => {
-                return (
-                  <tr key={task.id}>
-                    <th scope="row">{task.id}</th>
-                    <td>{task.task}</td>
-                    <td>{task.status}</td>
-                    <td>
-                      <button type="submit" className="btn btn-danger">
-                        Delete
-                      </button>
-                      <button type="submit" className="btn btn-success ms-1">
-                        Finished
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              <Todo todoTasks={todoTasks} stateTask={stateTask} />
             </tbody>
           </table>
         </div>
