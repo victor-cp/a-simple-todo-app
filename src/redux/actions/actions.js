@@ -1,7 +1,6 @@
 import { actionTypes } from "../constants/actionTypes";
 
 let id = 0;
-let completed = true;
 export const addTodo = (todo) => {
   ++id;
   return {
